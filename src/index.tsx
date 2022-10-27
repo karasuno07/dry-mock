@@ -4,16 +4,19 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ErrorBoundary fallback={<div>Error</div>}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ErrorBoundary>
+
   </React.StrictMode>
 );
 
