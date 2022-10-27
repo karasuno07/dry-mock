@@ -26,8 +26,8 @@ function CarouselProduct() {
       <div className="carousel-wrappper">
          <Carousel infiniteLoop useKeyboardArrows autoPlay showThumbs={false} showStatus={false}>
             {dataCarousel.map((item: any) => (
-               <div>
-                  <img src={item.img} height={400} />
+               <div key={item}>
+                  <img src={item.img} height={400} alt="img" />
                </div>
             ))}
          </Carousel>

@@ -13,7 +13,7 @@ function CardProduct() {
    const dataTech = [
       {
          id: 1,
-         title: 'SamSumg Galaxy Z ',
+         title: 'SamSum Galaxy Z ',
          img: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-1_1.jpg',
          price: 2000000,
       },
@@ -65,15 +65,15 @@ function CardProduct() {
          <Container className={styles.cardEdit}>
             <div className={styles.productCard}>
                <Grid container spacing={4}>
-                  {dataTech.map((item: any) => (
-                     <Grid item xs={3} className={styles.productCard} >
+                  {dataTech.map((itemCard: any) => (
+                     <Grid item xs={3} className={styles.productCard} key={itemCard}>
                         <Card sx={{ maxWidth: 390}} >
-                           <h1 className={styles.idProduct}>{item.id}</h1>
+                           <h1 className={styles.idProduct}>{itemCard.id}</h1>
                            <CardActionArea>
                               <CardMedia
                                  component="img"
                                  height="350px"
-                                 image={item.img}
+                                 image={itemCard.img}
                                  alt="imagePhone"
                               />
                               <CardContent>
@@ -84,10 +84,10 @@ function CardProduct() {
                                     align="center"
                                     color="green"
                                  >
-                                    {item.title}
+                                    {itemCard.title}
                                  </Typography>
                                  <Typography variant="body2" color="text.warning" align="center">
-                                    Price: {item.price}
+                                    Price: {itemCard.price}
                                  </Typography>
                               </CardContent>
                            </CardActionArea>
