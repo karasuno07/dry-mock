@@ -5,7 +5,7 @@ import styles from '~/components/Layout/avatar/Avatar.module.scss';
 function Avatar (){
     return (
         <span>
-            <img className={styles.img} src={img} alt="" />
+            <img className={styles.imgAvatar} src={img} alt="" />
             <label>User1</label>
         </span>
         

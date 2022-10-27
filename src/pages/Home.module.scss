@@ -8,19 +8,18 @@
 }
 
 .HeaderLogo {
-    position: relative;
-    width: 137px;
-    height: 45px;
-    
-    font-family: 'Homemade Apple';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 39px;
-    line-height: 84px;
-    display: inline;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
+   position: relative;
+   width: 137px;
+   height: 45px;
+   font-family: 'Homemade Apple';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 39px;
+   line-height: 84px;
+   display: inline;
+   align-items: center;
+   text-align: center;
+   color: #ffffff;
 }
 
 .HeaderA {
@@ -28,7 +27,6 @@
    width: 137px;
    height: 45px;
    margin-right: 20px;
-
    font-family: 'Arima Madurai';
    font-style: normal;
    font-weight: 700;
@@ -37,8 +35,20 @@
    display: inline;
    align-items: center;
    text-align: center;
-
    color: #ffffff;
 }
 
-
+.textHome {
+   font-family: 'Arima Madurai';
+   font-style: normal;
+   font-weight: 800;
+   font-size: 50px;
+   line-height: 82px;
+   /* identical to box height */
+   color: #6ae021;
+   display: flex;
+   align-items: center;
+   text-align: center;
+   letter-spacing: 0.1em;
+   justify-content: center;
+}

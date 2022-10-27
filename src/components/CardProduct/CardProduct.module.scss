@@ -1,0 +1,20 @@
+.idProduct {
+   display: none;
+}
+.productCard {
+   display: 'flex';
+   flex-direction: 'column';
+   justify-content: 'space-between';
+   flex-wrap: wrap;
+}
+
+.itemTitle {
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 38px;
+   color: green;
+}
+
+.cardEdit{
+    margin-top: 50px;
+}
