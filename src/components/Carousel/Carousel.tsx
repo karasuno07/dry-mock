@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import styles from '../Carousel/Carousel.module.scss';
 
 function CarouselProduct() {
    const dataCarousel = [
@@ -25,9 +26,9 @@ function CarouselProduct() {
    return (
       <div className="carousel-wrappper">
          <Carousel infiniteLoop useKeyboardArrows autoPlay showThumbs={false} showStatus={false}>
-            {dataCarousel.map((item: any) => (
-               <div key={item}>
-                  <img src={item.img} height={400} alt="img" />
+            {dataCarousel.map((item: any, index: number) => (
+               <div key={index}>
+                  <img src={item.img} className={styles.imageCarousel} alt="img" />
                </div>
             ))}
          </Carousel>

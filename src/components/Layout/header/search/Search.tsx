@@ -2,7 +2,7 @@ import react from 'react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@mui/material/Input';
-import styles from '~/components/search/Search.module.scss';
+import styles from './Search.module.scss';
 
 function Search() {
    return (

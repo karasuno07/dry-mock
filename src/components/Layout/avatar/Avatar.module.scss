@@ -1,11 +1,28 @@
-span {
-   float: right;
+.avatar {
    display: flex;
    align-items: center;
    justify-content: center;
-   right: 0;
-   width: 120px;
-   margin-left: 220px;
+   margin-left: auto;
+   padding-right: 10px;
+   padding-left: 10px;
+   transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+   color: #ffffff;
+   
+   &:hover {
+      //height: 60px;
+      box-shadow: inset 150px 0 0 0 #fff;
+      color: #54b717;
+      height: 80px;
+   }
+   
+}
+
+label {
+   font-family: 'Open Sans', sans-serif;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 30px;
+   
 }
 
 .imgAvatar {
@@ -16,15 +33,4 @@ span {
    margin-right: 5px;
 }
 
-label {
-   font-family: 'Arima Madurai';
-   font-style: normal;
-   font-weight: 700;
-   font-size: 30px;
-   color: #ffffff;
-   &:hover {
-      color: #000000;
-      cursor: pointer;
-      text-decoration: underline;
-   }
-}
+

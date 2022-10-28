@@ -3,7 +3,7 @@ import React from 'react';
 //import classname from 'classnames';
 
 import styles from './Home.module.scss';
-import Header from '~/components/Layout/header/Header';
+import {Header} from '~/components/Layout/header';
 import Footer from '~/components/Layout/footer/Footer';
 import CardProduct from '~/components/CardProduct/CardProduct';
 import CarouselProduct from '~/components/Carousel/Carousel';
@@ -23,7 +23,7 @@ function Home(): JSX.Element {
       <div>
          <Header />
          <CarouselProduct />
-         <p className={styles.textHome}>Special Items</p>
+         <div className={styles.bgText}><p className={styles.textHome}>Special Items</p></div>
          <CardProduct />
          <Footer />
       </div>

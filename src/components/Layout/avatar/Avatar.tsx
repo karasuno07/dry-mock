@@ -1,15 +1,15 @@
 import React from 'react';
-import img from '~/image/avatar.jpg';
+import { Avatar } from '@mui/material';
 
-import styles from '~/components/Layout/avatar/Avatar.module.scss';
-function Avatar (){
-    return (
-        <span>
-            <img className={styles.imgAvatar} src={img} alt="" />
-            <label>User1</label>
-        </span>
-        
-    );
+import img from '~/image/avatar.jpg';
+import styles from './Avatar.module.scss';
+function AvatarUser() {
+   return (
+      <div className={styles.avatar}>
+         <Avatar alt="User" src={img} />
+         <label>User1</label>
+      </div>
+   );
 }
 
-export default Avatar;
+export default AvatarUser;
