@@ -1,22 +1,37 @@
-import React from 'react';
-import './App.scss';
-import Home from '~/pages/Home';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import Shop from '~/pages/Shop';
-import Cart from './pages/Cart';
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DefaultLayout from '~/layouts';
+import { publicRoutes } from '~/routes';
 
 function App() {
-  return (
-    <div>
+   return (
       <Router>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/shop' element={<Shop/>} />
-          <Route path='/cart' element={<Cart/>} />
-        </Routes>
+         <Routes>
+            {publicRoutes.map((route, index) => {
+               const Page = route.component;
+
+               let Layout: any = DefaultLayout;
+               if (route.layout) {
+                  Layout = route.layout;
+               } else if (route.layout === undefined) {
+                  Layout = Fragment;
+               }
+
+               return (
+                  <Route
+                     key={index}
+                     path={route.path}
+                     element={
+                        <Layout>
+                           <Page />
+                        </Layout>
+                     }
+                  />
+               );
+            })}
+         </Routes>
       </Router>
-    </div>
-  );
+   );
 }
 
 export default App;

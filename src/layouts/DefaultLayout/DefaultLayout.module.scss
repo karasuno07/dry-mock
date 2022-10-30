@@ -1,0 +1,5 @@
+@import 'src/components/GlobalStyles/_library.scss';
+
+.container {
+    min-height: calc(100vh - $header-height - $footer-height);
+}

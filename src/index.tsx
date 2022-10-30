@@ -5,19 +5,21 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ErrorBoundary } from 'react-error-boundary';
+import GlobalStyles from '~/components/GlobalStyles';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <ErrorBoundary fallback={<div>Error</div>}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ErrorBoundary>
-
-  </React.StrictMode>
+   <React.StrictMode>
+      <ErrorBoundary fallback={<div>Error</div>}>
+         <Provider store={store}>
+            <GlobalStyles>
+               <App />
+            </GlobalStyles>
+         </Provider>
+      </ErrorBoundary>
+   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

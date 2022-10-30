@@ -1,0 +1,23 @@
+@import 'src/components/GlobalStyles/_library.scss';
+
+.footer {
+   position: static;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: $footer-height;
+   color: white;
+   background-color: #54b717;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.FooterText {
+   padding: 0;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 20px;
+   color: #ffffff;
+}

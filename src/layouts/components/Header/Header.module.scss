@@ -1,0 +1,54 @@
+@import 'src/components/GlobalStyles/_library.scss';
+
+.Header {
+   position: sticky;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: $header-height;
+   background-color: $primary;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   z-index: 10000;
+
+   .Logo {
+      width: 137px;
+      height: 45px;
+      font-family: 'Open Sans', sans-serif;
+      font-style: inherit;
+      font-weight: 400;
+      font-size: 39px;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+   }
+
+   .Link {
+      display: flex;
+      width: 150px;
+      font-family: 'Open Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      text-decoration: none;
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 15px 30px;
+      transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+
+      &.Hoverable {
+         &:hover {
+            //height: 60px; 
+            box-shadow: inset 150px 0 0 0 #fff;
+            color: $primary;
+         }
+      }
+
+      span {
+         margin-left: 5px;
+      }
+   }
+
+
+}
