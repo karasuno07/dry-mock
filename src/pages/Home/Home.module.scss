@@ -78,7 +78,7 @@ $quinary: #b1d25d;
   }
 }
 
-@keyframes move {
+@include keyframes(move) {
   0% {
     transform: translate(0px, 0px);
   }

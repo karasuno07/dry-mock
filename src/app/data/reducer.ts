@@ -1,4 +1,18 @@
-import Product, { PromoteProduct } from '~/models/product';
+import Product, { PromoteProduct ,Users } from '~/models/product';
+
+const dataUsers: Users[] = [
+   {
+      id:1,
+      username: 'user1',
+      password: '12345',
+
+   },
+   {
+      id:2,
+      username: 'user2',
+      password: '12345',
+   },   
+];
 
 const dataTech: Product[] = [
    {
@@ -69,4 +83,4 @@ const dataCarousel: PromoteProduct[] = [
    },
 ];
 
-export { dataTech, dataCarousel };
+export { dataTech, dataCarousel,dataUsers };

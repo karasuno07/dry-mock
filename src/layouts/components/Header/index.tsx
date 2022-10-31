@@ -13,6 +13,9 @@ import styles from './Header.module.scss';
 import config from '~/config';
 
 function Header() {
+
+   const isAuthenticated : boolean =true;
+
    return (
       <Box className={styles.Header}>
          <Box display={'flex'} alignItems="center">
@@ -34,7 +37,20 @@ function Header() {
                <CartIcon fontSize="large" />
                <span>Cart</span>
             </Link>
-            <AvatarUser />
+            {(isAuthenticated == true) ? (
+               <AvatarUser />
+            ) : (
+               <>
+                  <Link to={config.routes.login} className={styles.Link}>
+                     Login
+                  </Link>
+                  <Link to={config.routes.register} className={styles.Link}>
+                     Register
+                  </Link>
+               </>
+            )}
+            {/* {isAuthenticated && <AvatarUser />}
+            {!isAuthenticated && <AvatarUser />} */}
          </Box>
       </Box>
    );

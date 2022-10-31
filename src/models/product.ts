@@ -23,3 +23,15 @@ export class PromoteProduct {
       this.url = url;
    }
 }
+
+export class Users {
+   id: string | number;
+   username: string;
+   password: string;
+
+   constructor(id: string | number, username: string, password: string) {
+      this.id = id;
+      this.username = username;
+      this.password = password;
+   }
+}
