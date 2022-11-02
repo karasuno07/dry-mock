@@ -1,0 +1,15 @@
+@import 'src/components/GlobalStyles/_library.scss';
+
+
+.cardLogin{
+    display: flex;
+    margin: 200px auto;
+    align-content: center;
+    max-width: 380px;
+    border : 1px solid  $primary;
+}
+h1{
+    text-align: center;
+    padding-bottom: 15px;
+    color: $primary;
+}
