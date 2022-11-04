@@ -1,10 +1,9 @@
 import styles from './Login.module.scss';
 import * as yup from 'yup';
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as React from 'react';
-import {AccountCircle, LockOutlined } from '@mui/icons-material';
+import { AccountCircle, LockOutlined } from '@mui/icons-material';
 import {
-   Button,
    Card,
    CardActions,
    CardContent,
@@ -37,10 +36,17 @@ interface State {
 }
 
 const SigninSchema = yup.object().shape({
-   username: yup.string().required('User name is required').email('Email is not valid form(Ex: abc@gmail.com)'),
-   password: yup.string().required('Password is required').min(5, 'Password must be more than 5 characters')
-   .max(25, 'Password must be less than 25 characters'),
- });
+   username: yup
+      .string()
+      .required('User name is required')
+      .email('Email is not valid form(Ex: abc@gmail.com)'),
+   password: yup
+      .string()
+      .required('Password is required')
+      .min(5, 'Password must be more than 5 characters')
+      .max(25, 'Password must be less than 25 characters'),
+   rememberMe: yup.bool(),
+});
 
 export default function Login() {
    const {
@@ -48,7 +54,7 @@ export default function Login() {
       control,
       handleSubmit,
       formState: { errors },
-   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SigninSchema)} );
+   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SigninSchema) });
 
    const onSubmit = (data: FormValues) => {
       alert(JSON.stringify(data));
@@ -60,7 +66,7 @@ export default function Login() {
    };
 
    return (
-      <div style={{ display:'flex', justifyContent:'center', verticalAlign:'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'center' }}>
          <form onSubmit={handleSubmit(onSubmit)}>
             <Card className={styles.cardLogin}>
                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -73,16 +79,19 @@ export default function Login() {
                            render={({ field }) => (
                               <>
                                  <span className={styles.textInput}>
-                                    <i><AccountCircle /></i>
+                                    <i>
+                                       <AccountCircle />
+                                    </i>
                                     Account
                                  </span>
-                                 <input  {...field} />
-                                 {errors.username && <p className={styles.errMess}>{errors.username.message}</p>}
+                                 <input {...field} />
+                                 {errors.username && (
+                                    <p className={styles.errMess}>{errors.username.message}</p>
+                                 )}
                                  <FormHelperText>Please enter your username</FormHelperText>
                               </>
                            )}
                         />
-                        
                      </FormControl>
 
                      <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
@@ -96,20 +105,38 @@ export default function Login() {
                                     Password
                                  </span>
                                  <input type="password" {...field} />
-                                 {errors.password && <p className={styles.errMess}>{errors.password.message}</p>}
+                                 {errors.password && (
+                                    <p className={styles.errMess}>{errors.password.message}</p>
+                                 )}
                                  <FormHelperText>Please enter your password</FormHelperText>
                               </>
                            )}
                         />
                      </FormControl>
+                     <FormControl>
+                        <Controller
+                           name="rememberMe"
+                           control={control}
+                           render={({ field }) => (
+                              <FormControlLabel
+                                 control={<Checkbox {...field} />}
+                                 label="Remember Me."
+                              />
+                           )}
+                        />
+                     </FormControl>
 
-                     <FormControlLabel control={<Checkbox />} label="Remember Me." />
                      <br></br>
-                     <Link className={styles.link} to={config.routes.register}>No account ? Register here</Link><br/>
-                     <Link className={styles.link} to={config.routes.home}>Back to home page</Link>
+                     <Link className={styles.link} to={config.routes.register}>
+                        No account ? Register here
+                     </Link>
+                     <br />
+                     <Link className={styles.link} to={config.routes.home}>
+                        Back to home page
+                     </Link>
                   </CardContent>
                   <CardActions style={{ justifyContent: 'center' }}>
-                     <button className={styles.submitButton} type="submit" onClick={()=>{}}>
+                     <button className={styles.submitButton} type="submit" onClick={() => {}}>
                         Login
                      </button>
                   </CardActions>
@@ -119,4 +146,3 @@ export default function Login() {
       </div>
    );
 }
-
