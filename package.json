@@ -28,7 +28,8 @@
 		"react-scripts": "5.0.1",
 		"typescript": "^4.8.4",
 		"web-vitals": "^2.1.4",
-		"yup": "^0.32.11"
+		"yup": "^0.32.11",
+		"zod": "^3.19.1"
 	},
 	"scripts": {
 		"prestart": "npm install",

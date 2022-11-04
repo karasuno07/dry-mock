@@ -1,4 +1,4 @@
-import styles from './Login.module.scss';
+import styles from './Register.module.scss';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from 'react';
@@ -21,25 +21,27 @@ import { Controller, useController, useForm } from 'react-hook-form';
 interface FormValues {
    username: string;
    password: string;
-   rememberMe: boolean;
+   confirmPassword: string;
 }
 
 const defaultValues: FormValues = {
    username: '',
    password: '',
-   rememberMe: false,
+   confirmPassword: '',
 };
 
 interface State {
-   username: String;
+   username: string;
    password: string;
-   rememberMe: boolean;
+   confirmPassword: string;
 }
 
-const SigninSchema = yup.object().shape({
+const SignupSchema = yup.object().shape({
    username: yup.string().required('User name is required').email('Email is not valid form(Ex: abc@gmail.com)'),
    password: yup.string().required('Password is required').min(5, 'Password must be more than 5 characters')
    .max(25, 'Password must be less than 25 characters'),
+   confirmPassword: yup.string().required('Please confirm your password').oneOf([yup.ref('password')], 'Your passwords do not match.'),
+
  });
 
 export default function Login() {
@@ -48,7 +50,7 @@ export default function Login() {
       control,
       handleSubmit,
       formState: { errors },
-   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SigninSchema)} );
+   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SignupSchema)} );
 
    const onSubmit = (data: any) => {
       alert(JSON.stringify(data));
@@ -61,10 +63,10 @@ export default function Login() {
    return (
       <div style={{ display:'flex', justifyContent:'center', verticalAlign:'center' }}>
          <form onSubmit={handleSubmit(onSubmit)}>
-            <Card className={styles.cardLogin}>
+            <Card className={styles.cardRegister}>
                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <CardContent>
-                     <h1>Sign In</h1>
+                     <h1>Sign Up</h1>
                      <FormControl fullWidth>
                         <Controller
                            name="username"
@@ -87,6 +89,7 @@ export default function Login() {
                      <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
                         <Controller
                            name="password"
+                           
                            control={control}
                            render={({ field }) => (
                               <>
@@ -102,14 +105,31 @@ export default function Login() {
                         />
                      </FormControl>
 
-                     <FormControlLabel control={<Checkbox />} label="Remember Me." />
+                     <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
+                        <Controller
+                           name="confirmPassword"
+                           control={control}
+                           render={({ field }) => (
+                              <>
+                                 <span className={styles.textInput}>
+                                    <LockOutlined />
+                                    Confirm Password
+                                 </span>
+                                 <input type="password" {...field} />
+                                 {errors.confirmPassword && <p className={styles.errMess}>{errors.confirmPassword.message}</p>}
+                                 <FormHelperText>Please confirm your password</FormHelperText>
+                              </>
+                           )}
+                        />
+                     </FormControl>
+
+                     <FormControlLabel control={<Checkbox />} label="Accept term!" />
                      <br></br>
-                     <Link className={styles.link} to={config.routes.register}>No account ? Register here</Link><br/>
-                     <Link className={styles.link} to={config.routes.home}>Back to home page</Link>
+                     <Link className={styles.link} to={config.routes.login}>Already have account sign in here</Link><br/>
                   </CardContent>
                   <CardActions style={{ justifyContent: 'center' }}>
                      <Button variant="contained" size="medium" type="submit" onClick={onSubmit}>
-                        Login
+                        Sign Up
                      </Button>
                   </CardActions>
                </Box>
