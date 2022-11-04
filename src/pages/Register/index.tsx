@@ -2,7 +2,7 @@ import styles from './Register.module.scss';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from 'react';
-import {AccountCircle, LockOutlined } from '@mui/icons-material';
+import {AccountCircle, CheckBox, LockOutlined } from '@mui/icons-material';
 import {
    Button,
    Card,
@@ -22,18 +22,21 @@ interface FormValues {
    username: string;
    password: string;
    confirmPassword: string;
+   acceptRules: boolean;
 }
 
 const defaultValues: FormValues = {
    username: '',
    password: '',
    confirmPassword: '',
+   acceptRules: false,
 };
 
 interface State {
    username: string;
    password: string;
    confirmPassword: string;
+   acceptRules: boolean;
 }
 
 const SignupSchema = yup.object().shape({
@@ -41,10 +44,11 @@ const SignupSchema = yup.object().shape({
    password: yup.string().required('Password is required').min(5, 'Password must be more than 5 characters')
    .max(25, 'Password must be less than 25 characters'),
    confirmPassword: yup.string().required('Please confirm your password').oneOf([yup.ref('password')], 'Your passwords do not match.'),
-
+   acceptRules: yup.bool() // use bool instead of boolean
+   .oneOf([true], "You must accept the terms and conditions"),
  });
 
-export default function Login() {
+export default function Register() {
    const {
       register,
       control,
@@ -52,8 +56,9 @@ export default function Login() {
       formState: { errors },
    } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SignupSchema)} );
 
-   const onSubmit = (data: any) => {
+   const onSubmit = (data: FormValues) => {
       alert(JSON.stringify(data));
+      console.log(JSON.stringify(data));
    };
 
    const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,14 +128,27 @@ export default function Login() {
                         />
                      </FormControl>
 
-                     <FormControlLabel control={<Checkbox />} label="Accept term!" />
+                     <FormControl>
+                      <Controller
+                        name="acceptRules"
+                        control={control}
+                        render={({field}) => (
+                          <>
+                            <FormControlLabel control={<Checkbox {...field} />} label="Accept term of rules" />
+                            {errors.acceptRules && <p className={styles.errMess}>{errors.acceptRules.message}</p>}
+                          </>
+                        )
+                      }
+                     />
+                     </FormControl>
+                       
                      <br></br>
                      <Link className={styles.link} to={config.routes.login}>Already have account sign in here</Link><br/>
                   </CardContent>
                   <CardActions style={{ justifyContent: 'center' }}>
-                     <Button variant="contained" size="medium" type="submit" onClick={onSubmit}>
+                     <button className={styles.submitButton} type="submit" onClick={()=>{}}>
                         Sign Up
-                     </Button>
+                     </button>
                   </CardActions>
                </Box>
             </Card>

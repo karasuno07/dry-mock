@@ -50,8 +50,9 @@ export default function Login() {
       formState: { errors },
    } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SigninSchema)} );
 
-   const onSubmit = (data: any) => {
+   const onSubmit = (data: FormValues) => {
       alert(JSON.stringify(data));
+      console.log(JSON.stringify(data));
    };
 
    const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,9 +109,9 @@ export default function Login() {
                      <Link className={styles.link} to={config.routes.home}>Back to home page</Link>
                   </CardContent>
                   <CardActions style={{ justifyContent: 'center' }}>
-                     <Button variant="contained" size="medium" type="submit" onClick={onSubmit}>
+                     <button className={styles.submitButton} type="submit" onClick={()=>{}}>
                         Login
-                     </Button>
+                     </button>
                   </CardActions>
                </Box>
             </Card>

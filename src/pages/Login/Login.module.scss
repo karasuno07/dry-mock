@@ -1,4 +1,4 @@
-@import 'src/components/GlobalStyles/_library.scss';
+@import 'src/components/GlobalStyles/GlobalStyles';
 
 
 .cardLogin{
@@ -41,7 +41,25 @@ input:focus{
     
 }
 
-
+.submitButton {
+    background-color: white;
+    color: $primary;
+    border: solid 2px $primary;
+    border-radius: 30px;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 2px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    &:hover {
+       background-color: $primary; /* Green */
+       color: white;
+    }
+ }
 .textInput{
     font-size: 18px;
     margin-bottom: 5px;
