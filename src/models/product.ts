@@ -23,3 +23,4 @@ export class PromoteProduct {
       this.url = url;
    }
 }
+

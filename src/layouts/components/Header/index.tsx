@@ -2,17 +2,24 @@ import {
    Home as HomeIcon,
    LocalMall as MallIcon,
    ShoppingCart as CartIcon,
+   Login as LoginIcon,
+   AppRegistration as RegisterIcon,
+
 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import classname from 'classnames';
 import { Box } from '@mui/material';
 
+import { useAppSelector } from '~/app/hooks';
 import AvatarUser from '~/components/UI/Avatar/Avatar';
 import SearchBox from './SearchBox/SearchBox';
 import styles from './Header.module.scss';
 import config from '~/config';
 
 function Header() {
+
+   const auth = useAppSelector(state => state.auth)
+
    return (
       <Box className={styles.Header}>
          <Box display={'flex'} alignItems="center">
@@ -34,7 +41,20 @@ function Header() {
                <CartIcon fontSize="large" />
                <span>Cart</span>
             </Link>
-            <AvatarUser />
+            {(auth.isAuthenticated === true) ? (
+               <AvatarUser />
+            ) : (
+               <>
+                  <Link to={config.routes.login} className={styles.Link}>
+                     <LoginIcon fontSize="large" />
+                     <span>Login</span>
+                  </Link>
+                  <Link to={config.routes.register} className={styles.Link} style={{marginRight:'33px'}}>
+                     <RegisterIcon fontSize="large" />
+                     <span>Register</span>
+                  </Link>
+               </>
+            )}
          </Box>
       </Box>
    );

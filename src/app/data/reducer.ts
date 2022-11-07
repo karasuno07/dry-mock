@@ -1,4 +1,17 @@
 import Product, { PromoteProduct } from '~/models/product';
+import User from '~/models/user';
+
+const dataUsers: User[] = [
+   {
+      username: 'user1@gmail.com',
+      password: '123456',
+
+   },
+   {
+      username: 'user2@gmail.com',
+      password: '123456',
+   },   
+];
 
 const dataTech: Product[] = [
    {
@@ -69,4 +82,4 @@ const dataCarousel: PromoteProduct[] = [
    },
 ];
 
-export { dataTech, dataCarousel };
+export { dataTech, dataCarousel, dataUsers };
