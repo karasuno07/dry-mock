@@ -2,11 +2,10 @@
 
 
 .cardLogin{
-    display: flex;
     margin: 170px auto;
     align-content: center;
     max-width: 380px;
-    border : 1px solid  black;
+    border : 3px solid  black;
 }
 h1{
     font-family: sans-serif ;
@@ -17,20 +16,12 @@ h1{
     color: $primary;
 }
 
-input{
+.inputType{
     height: 38px;
-    border: 2px solid  black;
+    border: 3px solid  black;
     border-radius: 5px;
-    border-radius: 10px;
     padding: 0 10px;
     font-size: 16px;
-}
-
-input:focus{
-
-    outline: none;
-    border-color: $primary;
-    color: $primary;
 }
 
 .errMess{
@@ -43,8 +34,8 @@ input:focus{
 
 .submitButton {
     background-color: white;
-    color: $primary;
-    border: solid 2px $primary;
+    color: black;
+    border: solid 2px black;
     border-radius: 30px;
     padding: 12px 24px;
     text-align: center;
@@ -56,6 +47,7 @@ input:focus{
     transition-duration: 0.4s;
     cursor: pointer;
     &:hover {
+        border-color: $primary;
        background-color: $primary; /* Green */
        color: white;
     }

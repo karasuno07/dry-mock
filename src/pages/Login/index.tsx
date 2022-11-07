@@ -1,7 +1,6 @@
 import styles from './Login.module.scss';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as React from 'react';
 import { AccountCircle, LockOutlined } from '@mui/icons-material';
 import {
    Card,
@@ -11,11 +10,11 @@ import {
    Box,
    FormControlLabel,
    Checkbox,
-   FormHelperText,
+   TextField,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import config from '~/config';
-import { Controller, useController, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 interface FormValues {
    username: string;
@@ -50,7 +49,6 @@ const SigninSchema = yup.object().shape({
 
 export default function Login() {
    const {
-      register,
       control,
       handleSubmit,
       formState: { errors },
@@ -61,88 +59,96 @@ export default function Login() {
       console.log(JSON.stringify(data));
    };
 
-   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      // setValues({ ...values, [prop]: event.target.value });
-   };
+   // const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+   //    setValues({ ...values, [prop]: event.target.value });
+   // };
 
    return (
-      <div style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'center' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
          <form onSubmit={handleSubmit(onSubmit)}>
             <Card className={styles.cardLogin}>
-               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <CardContent>
-                     <h1>Sign In</h1>
-                     <FormControl fullWidth>
-                        <Controller
-                           name="username"
-                           control={control}
-                           render={({ field }) => (
-                              <>
-                                 <span className={styles.textInput}>
-                                    <i>
-                                       <AccountCircle />
-                                    </i>
-                                    Account
-                                 </span>
-                                 <input {...field} />
-                                 {errors.username && (
-                                    <p className={styles.errMess}>{errors.username.message}</p>
-                                 )}
-                                 <FormHelperText>Please enter your username</FormHelperText>
-                              </>
-                           )}
-                        />
-                     </FormControl>
-
-                     <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
-                        <Controller
-                           name="password"
-                           control={control}
-                           render={({ field }) => (
-                              <>
-                                 <span className={styles.textInput}>
-                                    <LockOutlined />
-                                    Password
-                                 </span>
-                                 <input type="password" {...field} />
-                                 {errors.password && (
-                                    <p className={styles.errMess}>{errors.password.message}</p>
-                                 )}
-                                 <FormHelperText>Please enter your password</FormHelperText>
-                              </>
-                           )}
-                        />
-                     </FormControl>
-                     <FormControl>
-                        <Controller
-                           name="rememberMe"
-                           control={control}
-                           render={({ field }) => (
-                              <FormControlLabel
-                                 control={<Checkbox {...field} />}
-                                 label="Remember Me."
+               <CardContent>
+                  <h1>Sign In</h1>
+                  <FormControl fullWidth>
+                     <Controller
+                        name="username"
+                        control={control}
+                        render={({ field }) => (
+                           <>
+                              <span className={styles.textInput}>
+                                 <i>
+                                    <AccountCircle />
+                                 </i>
+                                 Account
+                              </span>
+                              <TextField
+                                 placeholder="Please enter your username"
+                                 helperText={
+                                    errors.username && (
+                                       <p className={styles.errMess}>{errors.username.message}</p>
+                                    )
+                                 }
+                                 {...field}
                               />
-                           )}
-                        />
-                     </FormControl>
-
-                     <br></br>
-                     <Link className={styles.link} to={config.routes.register}>
-                        No account ? Register here
-                     </Link>
-                     <br />
-                     <Link className={styles.link} to={config.routes.home}>
-                        Back to home page
-                     </Link>
-                  </CardContent>
-                  <CardActions style={{ justifyContent: 'center' }}>
-                     <button className={styles.submitButton} type="submit" onClick={() => {}}>
-                        Login
-                     </button>
-                  </CardActions>
-               </Box>
+                           </>
+                        )}
+                     />
+                  </FormControl>
+                  <FormControl sx={{ mt: 1 }} variant="outlined" fullWidth>
+                     <Controller
+                        name="password"
+                        control={control}
+                        render={({ field }) => (
+                           <>
+                              <span className={styles.textInput}>
+                                 <LockOutlined />
+                                 Password
+                              </span>
+                              <TextField
+                                 className={styles.inputType}
+                                 type="password"
+                                 placeholder="Please enter your password"
+                                 helperText={
+                                    errors.password && (
+                                       <p className={styles.errMess}>{errors.password.message}</p>
+                                    )
+                                 }
+                                 {...field}
+                              />
+                           </>
+                        )}
+                     />
+                  </FormControl>
+                  <FormControl>
+                     <Controller
+                        name="rememberMe"
+                        control={control}
+                        render={({ field }) => (
+                           <FormControlLabel
+                              sx={{mt: 5}}
+                              control={<Checkbox {...field} />}
+                              label="Remember Me."
+                           />
+                        )}
+                     />
+                  </FormControl>
+               </CardContent>
+               <CardContent>
+                  <Link className={styles.link} to={config.routes.register}>
+                     No account ? Register here
+                  </Link>
+                  <br />
+                  <Link className={styles.link} to={config.routes.home}>
+                     Back to home page
+                  </Link>
+               </CardContent>
+               <CardActions style={{ justifyContent: 'center' }}>
+                  <button className={styles.submitButton} type="submit" onClick={() => {}}>
+                     Login
+                  </button>
+               </CardActions>
             </Card>
          </form>
-      </div>
+      </Box>
    );
 }

@@ -1,11 +1,10 @@
 @import 'src/components/GlobalStyles/_library.scss';
 
 .cardRegister {
-   display: flex;
    margin: 100px auto;
    align-content: center;
    max-width: 380px;
-   border: 1px solid black;
+   border: 3px solid black;
 }
 h1 {
    font-family: sans-serif;
@@ -25,12 +24,6 @@ input {
    font-size: 16px;
 }
 
-input:focus {
-   outline: none;
-   border-color: $primary;
-   color: $primary;
-}
-
 .errMess {
    color: rgb(255, 0, 0);
    font-weight: 100;
@@ -39,8 +32,8 @@ input:focus {
 }
 .submitButton {
    background-color: white;
-   color: $primary;
-   border: solid 2px $primary;
+   color: black;
+   border: solid 2px black;
    border-radius: 30px;
    padding: 12px 24px;
    text-align: center;
@@ -52,6 +45,7 @@ input:focus {
    transition-duration: 0.4s;
    cursor: pointer;
    &:hover {
+      border-color: $primary;
       background-color: $primary; /* Green */
       color: white;
    }
