@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import { Controller, useForm } from 'react-hook-form';
+import { isEmpty } from 'lodash';
 
 interface FormValues {
    username: string;
@@ -82,11 +83,12 @@ export default function Login() {
                                  Account
                               </span>
                               <TextField
+                                 variant="outlined"
+                                 //error={!!errors.username && errors.username.message}
                                  placeholder="Please enter your username"
+                                 error={!isEmpty(errors)}
                                  helperText={
-                                    errors.username && (
-                                       <p className={styles.errMess}>{errors.username.message}</p>
-                                    )
+                                    errors.username && errors.username.message
                                  }
                                  {...field}
                               />
@@ -108,10 +110,9 @@ export default function Login() {
                                  className={styles.inputType}
                                  type="password"
                                  placeholder="Please enter your password"
+                                 error={!isEmpty(errors)}
                                  helperText={
-                                    errors.password && (
-                                       <p className={styles.errMess}>{errors.password.message}</p>
-                                    )
+                                    errors.password && errors.password.message
                                  }
                                  {...field}
                               />

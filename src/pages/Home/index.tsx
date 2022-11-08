@@ -19,7 +19,7 @@ function Home(): JSX.Element {
                Special Items
             </Typography>
          </Box>
-         <CardProduct list={dataTech} />
+         <CardProduct list={dataTech.slice(0,4)} />
       </>
    );
 }

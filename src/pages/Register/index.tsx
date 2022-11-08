@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import { Controller, useForm } from 'react-hook-form';
+import { isEmpty } from 'lodash';
 
 interface FormValues {
    username: string;
@@ -89,11 +90,8 @@ export default function Register() {
                                  Account
                               </span>
                               <TextField
-                                 helperText={
-                                    errors.username && (
-                                       <p className={styles.errMess}>{errors.username.message}</p>
-                                    )
-                                 }
+                                 error={!isEmpty(errors)}
+                                 helperText={errors.username && errors.username.message}
                                  placeholder="Please enter your username"
                                  {...field}
                               />
@@ -113,11 +111,8 @@ export default function Register() {
                                  Password
                               </span>
                               <TextField
-                                 helperText={
-                                    errors.password && (
-                                       <p className={styles.errMess}>{errors.password.message}</p>
-                                    )
-                                 }
+                                 error={!isEmpty(errors)}
+                                 helperText={errors.password && errors.password.message}
                                  placeholder="Please enter your password"
                                  type="password"
                                  {...field}
@@ -138,12 +133,9 @@ export default function Register() {
                                  Confirm Password
                               </span>
                               <TextField
+                                 error={!isEmpty(errors)}
                                  helperText={
-                                    errors.confirmPassword && (
-                                       <p className={styles.errMess}>
-                                          {errors.confirmPassword.message}
-                                       </p>
-                                    )
+                                    errors.confirmPassword && errors.confirmPassword.message
                                  }
                                  placeholder="Please confirm your password"
                                  type="password"
@@ -165,7 +157,7 @@ export default function Register() {
                                  label="Accept term of rules"
                               />
                               {errors.acceptRules && (
-                                 <p className={styles.errMess}>{errors.acceptRules.message}</p>
+                                 <div className={styles.errMess}>{errors.acceptRules.message}</div>
                               )}
                            </>
                         )}
