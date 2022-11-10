@@ -7,11 +7,11 @@ import styles from './Detail.module.scss';
 function Detail(): JSX.Element {
    return (
       <Container>
-         <Box>
+         <Box sx={{pt:2}}>
             <Typography fontSize={"3rem"} className={styles.textHome}>Detail About Product</Typography>
          </Box>
          <ProductDetail />
-         <Button variant="contained" component={Link} to="/Shop">
+         <Button sx={{mt: 1, mb:1}} variant="contained" component={Link} to="/Shop">
             <ArrowBackIcon />
             Back to Shop
          </Button>

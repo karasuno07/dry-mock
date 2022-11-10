@@ -17,6 +17,8 @@ function App() {
                   Layout = Fragment;
                }
 
+               console.log(route)
+
                return (
                   <Route
                      key={index}
@@ -26,7 +28,7 @@ function App() {
                            <Page />
                         </Layout>
                      }
-                  />
+                  ></Route>
                );
             })}
          </Routes>

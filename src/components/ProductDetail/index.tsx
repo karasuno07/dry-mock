@@ -1,40 +1,72 @@
-import { Box, Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
+import {
+   Box,
+   Button,
+   Card,
+   CardActions,
+   CardContent,
+   CardMedia,
+   IconButton,
+   TextField,
+   Typography,
+} from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '~/app/hooks';
+
+import { fetchUserById } from '~/app/reducer/ProductDetailReducer';
 
 import Product from '~/models/product';
 import styles from './ProductDetail.module.scss';
 
-interface ProductItemProps {
-   productDetail: Product;
-}
+const formatter = new Intl.NumberFormat('en-US', {
+   style: 'currency',
+   currency: 'VND',
+   minimumFractionDigits: 0,
+});
 
 function ProductDetail() {
-   let id = localStorage.getItem('id');
+   const dispatch = useAppDispatch();
+   const { id } = useParams();
+   const productDetail = useAppSelector((state) => state.productDetail);
 
-   let title = localStorage.getItem('title');
-   let imagePhone = localStorage.getItem('img')!;
-   let price = localStorage.getItem('price');
-   let description = localStorage.getItem('description');
+   useEffect(() => {
+      id && dispatch(fetchUserById(id));
+
+      console.log(id);
+      // async function getProductDetail() {
+      //    try {
+      //    } catch (error) {
+      //       console.log('failed to get product detail');
+      //    }
+      // }
+   }, [id]);
+
    return (
       <Card className={styles.CardDetail}>
-         <CardMedia
-            component="img"
-            height="500px"
-            image={imagePhone}
-            className={styles.ImgDetails}
-         />
-         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flex: '1 0 auto' }}>
-               <Typography>
-                  <span>Product Name:</span> {title}
-               </Typography>
-               <Typography>
-                  <span>Price:</span> {price}
-               </Typography>
-               <Typography>
-                  <span>Description:</span> {description}
-               </Typography>
-            </CardContent>
-         </Box>
+         <CardMedia component="img" height="500px" image="" className={styles.ImgDetails} />
+
+         <CardContent className={styles.CartInfo}>
+            <Typography className={styles.Name} variant="h2" align="center">{productDetail.id}</Typography>
+            <Typography className={styles.Price}>
+               Price: {formatter.format(parseFloat('1313132'))}
+            </Typography>
+            <Typography height={'200px'} overflow={'scroll'}>
+               Description:
+            </Typography>
+            <CardActions className={styles.btnCart} style={{ justifyContent: 'right' }}>
+               <Box>
+                  <IconButton>
+                     <Remove />
+                  </IconButton>
+                  <TextField type={'number'} className={styles.boxCount} />
+                  <IconButton>
+                     <Add />
+                  </IconButton>
+               </Box>
+               <Button variant="contained">Add to cart</Button>
+            </CardActions>
+         </CardContent>
       </Card>
    );
 }

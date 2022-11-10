@@ -2,9 +2,9 @@ const routes = {
    home: '/',
    login: '/login',
    register: '/register',
-   shop: '/:category',
+   shop: '/shop',
    cart: '/cart',
-   detail: '/detail',
+   detail: '/detail/:id',
 };
 
 export default routes;
