@@ -15,8 +15,6 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '~/app/hooks';
 
 import { fetchUserById } from '~/app/reducer/ProductDetailReducer';
-
-import Product from '~/models/product';
 import styles from './ProductDetail.module.scss';
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -32,14 +30,8 @@ function ProductDetail() {
 
    useEffect(() => {
       id && dispatch(fetchUserById(id));
-
       console.log(id);
-      // async function getProductDetail() {
-      //    try {
-      //    } catch (error) {
-      //       console.log('failed to get product detail');
-      //    }
-      // }
+      
    }, [id]);
 
    return (
