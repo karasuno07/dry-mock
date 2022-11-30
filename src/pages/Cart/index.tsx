@@ -31,10 +31,7 @@ function Cart(): JSX.Element {
 
          <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} columns={16} pb={2}>
-               <Grid item xs={10} maxHeight={500} overflow="scroll">
-                  <Typography fontSize={25} textAlign="center" margin={2}>
-                     Cart Detail:
-                  </Typography>
+               <Grid item xs={10} maxHeight={460} overflow="scroll" >
                   <Stack spacing={1}>
                      <Card className={styles.cartProduct}>
                         <CardMedia className={styles.imgCart}>

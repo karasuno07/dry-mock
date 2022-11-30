@@ -38,11 +38,16 @@ const authSlice = createSlice({
             return state;
          })
          .addCase(login.fulfilled, (state, { payload }) => {
-
+            return {
+              ...state,
+               isAuthenticated: true,}
        
          })
          .addCase(login.rejected, (state, action) => {
-
+            return {
+             ...state,
+               isAuthenticated: false,
+            }
          });
    },
 });
