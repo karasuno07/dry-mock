@@ -1,19 +1,28 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
 
 const initialState = {
-   id: '',
+   selectedProduct: undefined,
+   products: [],
 };
 export interface ProductType {
-   id: string;
+   // isLoading: boolean;
+   selectedProduct?: any;
+   products: any[];
+   // error:
 }
 
-const baseURL = 'https://api.sampleapis.com/coffee/hot';
+const baseURL = 'http://localhost:8080/api/v1/products';
 
-export const fetchUserById = createAsyncThunk('/product', async (id: string) => {
-   const res = await fetch(baseURL);
-   const data = await res.json();
-   const detail = data.find((i: any)  => i.id === id)
-   return detail;
+export const fetchProductById = createAsyncThunk('/product', async (id: number, thunkApi) => {
+   try {
+      const res = await fetch(baseURL);
+      const data = await res.json();
+      const detail = data.find((i: any) => i.id === id);
+
+      return detail;
+   } catch (error) {
+      console.error('Have problem fetching product');
+   }
 });
 
 const ProductDetailReducer = createSlice({
@@ -21,21 +30,21 @@ const ProductDetailReducer = createSlice({
    initialState: initialState as ProductType,
    reducers: {
       showProduct: (state, action) => {
-         state.id = action.payload;
-         return state;
+         state.selectedProduct = action.payload;
       },
    },
    extraReducers: (builder) => {
       builder
-         .addCase(fetchUserById.pending, (state, action) => {
+         .addCase(fetchProductById.pending, (state, action) => {
             return state;
          })
-         .addCase(fetchUserById.fulfilled, (state, action) => {
-            console.log('===,re',action.payload);
-            return state = {...action.payload};
+         .addCase(fetchProductById.fulfilled, (state, action) => {
+            state.selectedProduct = action.payload;
+            console.log(action.payload);
          })
-         .addCase(fetchUserById.rejected, (state, action) => {
-            return state;
+         .addCase(fetchProductById.rejected, (state, action) => {
+            if (action.payload) {
+            }
          });
    },
 });

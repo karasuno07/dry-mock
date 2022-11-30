@@ -7,7 +7,7 @@ function Shop(): JSX.Element {
       <>
          <Box>
             <Typography
-               fontSize={70}
+               fontSize={55}
                textTransform="uppercase"
                textAlign="center"
             >

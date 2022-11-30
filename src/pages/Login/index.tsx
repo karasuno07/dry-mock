@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import config from '~/config';
 import { Controller, useForm } from 'react-hook-form';
 import { isEmpty } from 'lodash';
+import { useAppDispatch } from '~/app/hooks';
+import { login } from '~/app/reducer/authSlice';
 
 interface FormValues {
    username: string;
@@ -35,7 +37,7 @@ interface State {
    rememberMe: boolean;
 }
 
-const SigninSchema = yup.object().shape({
+const SignInSchema = yup.object().shape({
    username: yup
       .string()
       .required('User name is required')
@@ -49,20 +51,19 @@ const SigninSchema = yup.object().shape({
 });
 
 export default function Login() {
+   const dispatch = useAppDispatch();
+
    const {
       control,
       handleSubmit,
       formState: { errors },
-   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SigninSchema) });
+   } = useForm({ defaultValues: defaultValues, resolver: yupResolver(SignInSchema) });
 
-   const onSubmit = (data: FormValues) => {
-      alert(JSON.stringify(data));
-      console.log(JSON.stringify(data));
+   const onSubmit = async (data: FormValues) => {
+      const { username, password } = data;
+      dispatch(login({ username, password }));
+      
    };
-
-   // const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-   //    setValues({ ...values, [prop]: event.target.value });
-   // };
 
    return (
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -84,12 +85,9 @@ export default function Login() {
                               </span>
                               <TextField
                                  variant="outlined"
-                                 //error={!!errors.username && errors.username.message}
                                  placeholder="Please enter your username"
                                  error={!isEmpty(errors)}
-                                 helperText={
-                                    errors.username && errors.username.message
-                                 }
+                                 helperText={errors.username && errors.username.message}
                                  {...field}
                               />
                            </>
@@ -111,9 +109,7 @@ export default function Login() {
                                  type="password"
                                  placeholder="Please enter your password"
                                  error={!isEmpty(errors)}
-                                 helperText={
-                                    errors.password && errors.password.message
-                                 }
+                                 helperText={errors.password && errors.password.message}
                                  {...field}
                               />
                            </>
@@ -126,7 +122,7 @@ export default function Login() {
                         control={control}
                         render={({ field }) => (
                            <FormControlLabel
-                              sx={{mt: 5}}
+                              sx={{ mt: 5 }}
                               control={<Checkbox {...field} />}
                               label="Remember Me."
                            />
@@ -144,7 +140,7 @@ export default function Login() {
                   </Link>
                </CardContent>
                <CardActions style={{ justifyContent: 'center' }}>
-                  <button className={styles.submitButton} type="submit" onClick={() => {}}>
+                  <button className={styles.submitButton} type="submit">
                      Login
                   </button>
                </CardActions>

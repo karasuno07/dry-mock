@@ -1,0 +1,55 @@
+@import 'src/components/GlobalStyles/_library.scss';
+
+.cartProduct{
+    display: flex;
+    border-radius: 30px !important;
+    border-color: gray;
+    border-style: ridge;
+    width: 640px;
+    box-shadow: 15px 8px 11px rgba(33, 33, 33, .2);
+}
+
+.imgCart{
+    width: 128px; 
+    height: 100%;
+    margin: auto 7px;
+    border-radius: 30px;
+}
+.infoCart{
+    width: 350px;
+    margin: 0;
+    padding: 0;
+}
+.totalPrice{
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    width: 100px;
+}
+
+.boxCount{
+    width: 70px;
+    height: 25px !important;
+ }
+
+ .cardPay{
+    width: 380px;
+    height: 297px;
+    border-radius: 30px;
+    border: 1px solid gray ; 
+    box-shadow: inset 150px 10px 0 0 black;
+    
+}
+.cardPayHead{
+    text-align: center;
+    font-size: 2rem !important;
+    font-weight: bold;
+    color: $primary;
+}
+.cardText{
+    font-size: 28px !important;
+    font-weight: bold;
+    color: black;
+    padding: 5px 5px;
+}
+ 
